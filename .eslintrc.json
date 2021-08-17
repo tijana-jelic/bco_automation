@@ -1,0 +1,70 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "plugin:jsx-a11y/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "prettier/@typescript-eslint"
+  ],
+  "plugins": ["@typescript-eslint", "react", "react-hooks", "jsx-a11y"],
+  "rules": {
+    "@typescript-eslint/explicit-module-boundary-types": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    //Added for nextjs Link warning,
+    // more on this issue https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/402
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    "object-shorthand": ["error", "always"],
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
+    "no-param-reassign": "error",
+    "react/jsx-curly-brace-presence": [
+      "error",
+      {
+        "props": "never",
+        "children": "never"
+      }
+    ],
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/self-closing-comp": "error",
+    "react-hooks/exhaustive-deps": "error",
+    "sort-imports": "off"
+  },
+  "settings": {
+    "react": { "version": "detect" }
+  },
+  "globals": {
+    "React": "writable"
+  },
+  "ignorePatterns": ["src/assets/svg/index.ts"],
+  "overrides": [
+    {
+      "files": ["**/*.test.*"],
+      "extends": ["plugin:jest/recommended", "plugin:jest/style"],
+      "env": {
+        "jest/globals": true
+      },
+      "plugins": ["@typescript-eslint", "react", "react-hooks", "jsx-a11y", "jest"],
+      "rules": {
+        "jest/no-large-snapshots": ["error", { "inlineMaxSize": 8 }],
+        "jest/no-restricted-matchers": [
+          "error",
+          {
+            "toThrowErrorMatchingSnapshot": "Use `toThrowErrorMatchingInlineSnapshot()` instead",
+            "toMatchSnapshot": "Use `toMatchInlineSnapshot()` instead"
+          }
+        ]
+      }
+    }
+  ]
+}

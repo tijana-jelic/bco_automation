@@ -1,0 +1,10 @@
+node_modules/
+package-lock.json
+yarn.lock
+.DS_Store
+
+#Visual testing
+screenshots/
+
+# Axe reports
+webdriverio/specs/a11y/*.json
